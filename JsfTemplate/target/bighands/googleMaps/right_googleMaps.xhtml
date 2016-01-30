@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	    xmlns:f="http://java.sun.com/jsf/core"
+	    xmlns:h="http://java.sun.com/jsf/html"
+	    xmlns:ui="http://java.sun.com/jsf/facelets"
+	    xmlns:p="http://primefaces.org/ui" >
+	<h:form>
+<!--
+		<h:outputStylesheet id="centeredText">
+			.title_content {
+				display: inline-block;
+				width: 100%;
+				text-align: center;
+			}
+		</h:outputStylesheet> 
+-->
+		<p:menu>
+			<p:submenu label="sumenu1">
+				<p:menuitem value="menuitem1-1"/>
+				<p:menuitem value="menuItem1-2"/>
+				<p:menuitem value="menuItem1-3"/>
+			</p:submenu>
+			<p:submenu label="sumenu2">
+				<p:menuitem value="menuItem2-1"/>
+				<p:menuitem value="menuItem2-2"/>
+				<p:menuitem value="menuItem2-3"/>
+			</p:submenu>
+		</p:menu>
+	</h:form>	
+</ui:composition>

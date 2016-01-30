@@ -1,0 +1,28 @@
+<ui:composition template="/templates/pc_default_template.xhtml"
+	     xmlns="http://www.w3.org/1999/xhtml"
+	     xmlns:f="http://java.sun.com/jsf/core"
+	     xmlns:h="http://java.sun.com/jsf/html"
+	     xmlns:ui="http://java.sun.com/jsf/facelets"
+	     xmlns:m="http://code.google.com/p/gmaps4jsf/"
+	     xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		
+	</h:head>
+	<!-- ヘッダー:テンプレートで定義 -->
+	<!-- メインコンテントツ -->
+     <ui:define name="content">
+         <ui:include src="/googleMaps/main_googleMaps.xhtml" />
+     </ui:define>
+	<!-- フッタ -->
+	 <ui:define name="south" >
+         <ui:include src="/googleMaps/foot_googleMaps.xhtml" />
+	 </ui:define>
+	<!-- 左サイドバー -->
+	 <ui:define name="west" >
+         <ui:include src="/googleMaps/left_googleMaps.xhtml" />
+	</ui:define>
+	<!-- 右サイドバー -->
+	 <ui:define name="east" >
+         <ui:include src="/googleMaps/right_googleMaps.xhtml" />
+	 </ui:define>
+</ui:composition>

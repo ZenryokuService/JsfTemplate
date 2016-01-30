@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	    xmlns:f="http://java.sun.com/jsf/core"
+	    xmlns:h="http://java.sun.com/jsf/html"
+	    xmlns:ui="http://java.sun.com/jsf/facelets"
+	    xmlns:p="http://primefaces.org/ui"
+	    xmlns:m="http://code.google.com/p/gmaps4jsf/">
+	<h:head>
+		<!-- define gmaps API -->
+	    <script type="text/javascript"
+	      src="https://maps.googleapis.com/maps/api/js?sensor=false">
+	    </script>
+	</h:head>
+    <h:form>
+		<!-- make GoogleMap -->
+		<p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:700px;height:800px"/>
+	</h:form>
+</ui:composition>
