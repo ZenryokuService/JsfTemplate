@@ -6,7 +6,7 @@ import org.primefaces.model.menu.MenuModel;
 /**
  * このフレームワークで使用する、基本のヘッダメニューモデル<br/>
  * 
- * @author yogotakumi
+ * @author ZenryokuService
  */
 public class HeaderMenuBar {
 	/** 表示するMenuModel */

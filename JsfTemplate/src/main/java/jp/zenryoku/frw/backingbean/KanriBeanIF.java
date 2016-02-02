@@ -4,7 +4,7 @@ import java.io.Serializable;
 /**
  * 管理ビーンに実装するインターフェース<br/>
  * 1.init():初期化メソッド
- * @author yogotakumi
+ * @author ZenryokuService
  */
 public interface KanriBeanIF extends Serializable {
 	/** 初期化メソッド */

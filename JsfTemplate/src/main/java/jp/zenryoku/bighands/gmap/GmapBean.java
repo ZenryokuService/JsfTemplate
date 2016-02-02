@@ -5,7 +5,7 @@ import jp.zenryoku.frw.backingbean.KanriBeanIF;
 import jp.zenryoku.frw.component.menu.HeaderMenuBar;
 /**
  * GooleMap画面の管理ビーン<br/>
- * @author yogotakumi
+ * @author ZenryokuService
  */
 @Named
 @SuppressWarnings("serial")

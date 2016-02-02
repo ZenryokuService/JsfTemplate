@@ -2,4 +2,4 @@
 <pageflow:Pageflow
 	 xmlns:pageflow="http://www.sybase.com/suade/pageflow" 
 	 id="pf14523916550940"
-	 configfile="hkd.ebt.jsf.frw/src/main/webapp/WEB-INF/faces-config.xml"/>
+	 configfile="jp.zenryoku/src/main/webapp/WEB-INF/faces-config.xml"/>

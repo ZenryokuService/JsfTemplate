@@ -6,7 +6,7 @@ import java.io.Serializable;
  * フレームワークで使用する<br/>
  * すべてのDAOに実装する<br/>
  * 
- * @author yogotakumi
+ * @author ZenryokuService
  */
 public interface DaoIF extends Serializable {
 }
