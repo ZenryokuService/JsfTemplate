@@ -1,4 +1,7 @@
+jp/zenryoku/frw/BigHandsDao.class
+jp/zenryoku/frw/dao/MenuMSTDao.class
 jp/zenryoku/bighands/gmap/GmapBean.class
 jp/zenryoku/frw/EntityIF.class
+jp/zenryoku/frw/exceptions/BigHandsCodingRuleException.class
 jp/zenryoku/frw/DaoIF.class
 jp/zenryoku/frw/backingbean/KanriBeanIF.class

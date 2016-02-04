@@ -43,7 +43,9 @@ public class MenuMST implements EntityIF {
 	private String menuValue;
 
 	private Integer number;
-
+	/**
+	 * コンストラクタ<br/>
+	 */
 	public MenuMST() {
 	}
 	/**

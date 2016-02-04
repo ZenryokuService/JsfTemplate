@@ -57,11 +57,11 @@ public abstract class BigHandsDao {
 	 * Entityの定義するテーブルデータをすべて取得する.
 	 * 
 	 * @param ent EntityIFを実装したエンティティ
-	 * @return select * Entityの定義するテーブルの結果
+	 * @return select * from Entity の定義するテーブルの結果
 	 */
 	@SuppressWarnings("unchecked")
-	public List<EntityIF> exeFindAll(EntityIF ent) throws Exception{
-		List<EntityIF> result = null;
+	public <T> List<Class<? extends EntityIF>> exeFindAll(EntityIF ent) throws Exception{
+		List<Class<? extends EntityIF>> result = null;
 		try {
 			setUp();
 			Query que = entMng.createNamedQuery(ent.findAll());
