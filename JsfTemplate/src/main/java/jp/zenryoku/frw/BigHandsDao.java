@@ -42,7 +42,6 @@ public abstract class BigHandsDao {
 	 */
 	protected void setUp() {
 		entMng.getTransaction().begin();
-		factory.close();
 	}
 	/**
 	 * EntityManagerの起動後にトランザクションを閉じるなど<br/>
@@ -52,6 +51,19 @@ public abstract class BigHandsDao {
 		entMng.getTransaction().commit();
 		entMng.close();
 		
+	}
+	protected List<Class<? extends EntityIF>> exeNamedQuery(String queryName) throws Exception {
+		List<Class<? extends EntityIF>> result = null;
+		try {
+			setUp();
+			Query que = entMng.createNamedQuery(queryName);
+			result = que.getResultList();
+			finish();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BigHandsCodingRuleException(e);
+		}
+		return result;
 	}
 	/**
 	 * Entityの定義するテーブルデータをすべて取得する.
@@ -63,9 +75,7 @@ public abstract class BigHandsDao {
 	public <T> List<Class<? extends EntityIF>> exeFindAll(EntityIF ent) throws Exception{
 		List<Class<? extends EntityIF>> result = null;
 		try {
-			setUp();
-			Query que = entMng.createNamedQuery(ent.findAll());
-			result = que.getResultList();
+			result = exeNamedQuery(ent.findAll());
 			finish();
 		} catch (Exception e) {
 			e.printStackTrace();

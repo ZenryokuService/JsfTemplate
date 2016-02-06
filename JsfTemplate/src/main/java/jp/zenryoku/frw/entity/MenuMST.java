@@ -1,9 +1,13 @@
 package jp.zenryoku.frw.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
 
-import jp.zenryoku.frw.DaoIF;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 import jp.zenryoku.frw.EntityIF;
 
 
@@ -13,40 +17,69 @@ import jp.zenryoku.frw.EntityIF;
  */
 @Entity
 @Table(name="\"MenuMST\"")
-@NamedQuery(name="MenuMST.findAll", query="SELECT m FROM MenuMST m")
+@NamedQueries({
+		@NamedQuery(name="MenuMST.findAll", query="select m from MenuMST m")
+		,@NamedQuery(name="MenuMST.getAllRole", query="select m from MenuMST m where m.role = 9")
+})
+@SuppressWarnings("serial")
 public class MenuMST implements EntityIF {
-	private static final long serialVersionUID = 1L;
-
+	/** findAllのクエリ名 */
+	public static final String FIND_ALL = "MenuMST.findAll";
+	/** getAllRoleのクエリ */
+	public static final String GET_ALL_ROLE = "MenuMST.getAllRole";
 	/**
 	 * MenuMSTのサロゲートキー
 	 */
 	@Id
 	@Column(name="\"menu_mst_id:\"")
-	private Integer menuMstId_;
+	private Integer menuMstId;
 	/**
-	 * メニューに対する説明
+	 * メニュー名
 	 */
-	private String discription;
-	/**
-	 * 画面ID
-	 */
-	@Column(name="gamen_id")
-	private Integer gamenId;
-
 	@Column(name="menu_name")
 	private String menuName;
-
+	/**
+	 * メニュータイプ
+	 */
 	@Column(name="menu_type")
 	private Integer menuType;
-
+	/**
+	 * メニュー値
+	 */
 	@Column(name="menu_value")
 	private String menuValue;
-
+	/** 
+	 * 表示順序 
+	 */
 	private Integer number;
+	/**
+	 * 権限ID(権限レベル)
+	 */
+	@Column(name="role_id")
+	private Integer role;
+
 	/**
 	 * コンストラクタ<br/>
 	 */
 	public MenuMST() {
+	}
+	/**
+	 * @return the role
+	 */
+	public Integer getRole() {
+		return role;
+	}
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(Integer role) {
+		this.role = role;
+	}
+	/**
+	 * @param menuMstId the menuMstId to set
+	 */
+	public void setMenuMstId(Integer menuMstId) {
+		this.menuMstId = menuMstId;
 	}
 	/**
 	 * このエンティティで定義するNamedQueryのname属性の値を返却する
@@ -58,43 +91,15 @@ public class MenuMST implements EntityIF {
 	/**
 	 * @return the menuMstId_
 	 */
-	public Integer getMenuMstId_() {
-		return menuMstId_;
+	public Integer getMenuMstId() {
+		return menuMstId;
 	}
 
 	/**
 	 * @param menuMstId_ the menuMstId_ to set
 	 */
-	public void setMenuMstId_(Integer menuMstId_) {
-		this.menuMstId_ = menuMstId_;
-	}
-
-	/**
-	 * @return the discription
-	 */
-	public String getDiscription() {
-		return discription;
-	}
-
-	/**
-	 * @param discription the discription to set
-	 */
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-
-	/**
-	 * @return the gamenId
-	 */
-	public Integer getGamenId() {
-		return gamenId;
-	}
-
-	/**
-	 * @param gamenId the gamenId to set
-	 */
-	public void setGamenId(Integer gamenId) {
-		this.gamenId = gamenId;
+	public void setMenuMstId_(Integer menuMstId) {
+		this.menuMstId = menuMstId;
 	}
 
 	/**
@@ -152,12 +157,4 @@ public class MenuMST implements EntityIF {
 	public void setNumber(Integer number) {
 		this.number = number;
 	}
-
-	/**
-	 * @return the serialversionuid
-	 */
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 }
