@@ -1,5 +1,6 @@
 package jp.zenryoku.frw.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NamedQueries;
@@ -15,9 +16,6 @@ import jp.zenryoku.frw.entity.MenuMST;
  * 
  * @author ZenryokuService
  */
-@NamedQueries({
-		@NamedQuery(name="MenuMST.findAll", query="select * from MenuMST m")
-})
 public class MenuMSTDao extends BigHandsDao {
 	/**
 	 * コンストラクタ
@@ -31,7 +29,24 @@ public class MenuMSTDao extends BigHandsDao {
 	 * @return 検索結果
 	 * @throws Exception 想定外のエラー
 	 */
-	public List<Class<? extends EntityIF>> getAllRole() throws Exception {
-		return exeNamedQuery(MenuMST.GET_ALL_ROLE);
+	public List<MenuMST> getAllRole() throws Exception {
+		List<EntityIF> res = exeNamedQuery(MenuMST.GET_ALL_ROLE);
+		return convertMenuMSTList(res);
 	}
+	/**
+	 * 
+	 * @param entList
+	 * @return
+	 */
+	private List<MenuMST> convertMenuMSTList(List<EntityIF> entList) {
+		ArrayList<MenuMST> result = new ArrayList<MenuMST>();
+		for (EntityIF cls : entList) {
+			result.add((MenuMST) cls);
+		}
+		return result;
+	}
+	/**
+	 * 取得したメニューをソートして<br/>
+	 * ユーザー権限,に対応するメニューを取得する
+	 */
 }

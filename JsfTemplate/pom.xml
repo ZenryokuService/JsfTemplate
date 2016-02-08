@@ -15,6 +15,18 @@
 		</repository>
 	</distributionManagement>
 	<dependencies>
+		<!-- JavaEE7 -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+		</dependency>
+		<!-- InitialContextの自動設定 -->
+		<dependency>
+			<groupId>org.glassfish.extras</groupId>
+			<artifactId>appserv-rt</artifactId>
+			<version>3.2-b06</version>
+		</dependency>
 		<!-- Primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -26,34 +38,11 @@
 			<artifactId>all-themes</artifactId>
 			<version>1.0.10</version>
 		</dependency>
-		<!-- JSF 2 API -->
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>2.2.0-m07</version>
-		</dependency>
 		<!-- Google Maps & JSF -->
 		<dependency>
 			<groupId>com.googlecode.gmaps4jsf</groupId>
 			<artifactId>gmaps4jsf-core</artifactId>
 			<version>1.1.1</version>
-		</dependency>
-		<!-- JPA library -->
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<version>1.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.6.Final</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.hibernate.javax.persistence</groupId>
-					<artifactId>hibernate-jpa-2.1-api</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<!-- javax.inject -->
 		<dependency>
@@ -61,6 +50,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
+		<!-- eclipse-link -->
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
@@ -121,19 +111,11 @@
 					</domain>
 				</configuration>
 			</plugin>
-<!-- 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<compilerArguments>
-						<endorseddirs>${endorsed.dir}</endorseddirs>
-					</compilerArguments>
-				</configuration>
-			</plugin>
--->			<plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
+				<version>3.1</version> <configuration> <source>1.7</source> <target>1.7</target> 
+				<compilerArguments> <endorseddirs>${endorsed.dir}</endorseddirs> </compilerArguments> 
+				</configuration> </plugin> -->
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
@@ -146,29 +128,14 @@
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.6</version>
 			</plugin>
-<!-- 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.7</version>
-				<executions>
-					<execution>
-						<id>deploy-features-xml</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>deploy-file</goal>
-						</goals>
-						<configuration>
-							<repositoryId>${project.distributionManagement.snapshotRepository.id}</repositoryId>
-							<url>${project.distributionManagement.snapshotRepository.url}</url>
-							<groupId>${project.groupId}</groupId>
-							<artifactId>${project.artifactId}</artifactId>
-							<version>${project.version}</version>
-							<file>features.xml</file>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
--->		</plugins>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-deploy-plugin</artifactId> 
+				<version>2.7</version> <executions> <execution> <id>deploy-features-xml</id> 
+				<phase>deploy</phase> <goals> <goal>deploy-file</goal> </goals> <configuration> 
+				<repositoryId>${project.distributionManagement.snapshotRepository.id}</repositoryId> 
+				<url>${project.distributionManagement.snapshotRepository.url}</url> <groupId>${project.groupId}</groupId> 
+				<artifactId>${project.artifactId}</artifactId> <version>${project.version}</version> 
+				<file>features.xml</file> </configuration> </execution> </executions> </plugin> -->
+		</plugins>
 	</build>
 	<!-- Properties Setting -->
 	<properties>

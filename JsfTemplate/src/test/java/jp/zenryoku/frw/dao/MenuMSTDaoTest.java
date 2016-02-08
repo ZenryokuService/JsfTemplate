@@ -1,6 +1,9 @@
 package jp.zenryoku.frw.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Before;
 
 import jp.zenryoku.frw.EntityIF;
 import jp.zenryoku.frw.entity.MenuMST;
@@ -19,9 +22,15 @@ public class MenuMSTDaoTest extends TestCase {
 	/**
 	 * テストのセットアップ<br/>
 	 */
+	@Before
 	public void setUp() {
+		System.out.println("*** setUp ***");
 		menu = new MenuMST();
 		dao = new MenuMSTDao();
+	}
+	
+	public void tearDown() {
+		dao.finish();
 	}
 	/**
 	 * 引数の値を確認するためのメソッド。
@@ -46,10 +55,13 @@ public class MenuMSTDaoTest extends TestCase {
 	 * CASE:1. データの取得を確認する
 	 */
 	public void testMenuMST() {
-		List<Class<? extends EntityIF>> list = null;
+		List<MenuMST> list = new ArrayList<MenuMST>();
+		
 		try {
-			list  = dao.exeFindAll(menu);
-			assertNotNull(list);
+			assertNotNull(menu);
+			List<EntityIF> entList  = dao.exeFindAll(menu);
+			assertNotNull(entList);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,7 +71,7 @@ public class MenuMSTDaoTest extends TestCase {
 	 * CASE:2. role_idを指定しての取得(MenuMST.getAllRole)
 	 */
 	public void testMenuMST2() {
-		List<Class<? extends EntityIF>> list = null;
+		List<MenuMST> list = null;
 		try {
 			list  = dao.getAllRole();
 			assertNotNull(list);

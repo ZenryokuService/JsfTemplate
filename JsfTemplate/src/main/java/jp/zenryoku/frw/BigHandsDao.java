@@ -1,5 +1,6 @@
 package jp.zenryoku.frw;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -47,21 +48,31 @@ public abstract class BigHandsDao {
 	 * EntityManagerの起動後にトランザクションを閉じるなど<br/>
 	 * 後処理を行う
 	 */
-	protected void finish() {
-		entMng.getTransaction().commit();
+	public void finish() {
 		entMng.close();
-		
+		factory.close();
+		entMng = null;
+		factory = null;
 	}
-	protected List<Class<? extends EntityIF>> exeNamedQuery(String queryName) throws Exception {
-		List<Class<? extends EntityIF>> result = null;
+	protected List<EntityIF> exeNamedQuery(String queryName) throws Exception {
+		List<EntityIF> result = new ArrayList<EntityIF>();
 		try {
 			setUp();
-			Query que = entMng.createNamedQuery(queryName);
+			Query que = entMng.createNamedQuery(queryName, EntityIF.class);
 			result = que.getResultList();
+			entMng.getTransaction().commit();
 			finish();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new BigHandsCodingRuleException(e);
+		}
+		try {
+			for (EntityIF ent : result) {
+				EntityIF inter = (EntityIF) ent;
+				result.add(inter);
+			}
+		} catch (ClassCastException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -71,9 +82,9 @@ public abstract class BigHandsDao {
 	 * @param ent EntityIFを実装したエンティティ
 	 * @return select * from Entity の定義するテーブルの結果
 	 */
-	@SuppressWarnings("unchecked")
-	public <T> List<Class<? extends EntityIF>> exeFindAll(EntityIF ent) throws Exception{
-		List<Class<? extends EntityIF>> result = null;
+	public List<EntityIF> exeFindAll(EntityIF ent) throws Exception{
+		List<EntityIF> result = null;
+		
 		try {
 			result = exeNamedQuery(ent.findAll());
 			finish();
