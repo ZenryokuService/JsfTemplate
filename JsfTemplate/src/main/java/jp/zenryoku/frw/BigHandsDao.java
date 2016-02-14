@@ -3,11 +3,14 @@ package jp.zenryoku.frw;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import jp.zenryoku.frw.exceptions.BigHandsCodingRuleException;
 
@@ -17,10 +20,13 @@ import jp.zenryoku.frw.exceptions.BigHandsCodingRuleException;
  * 
  * @author ZenryokuService
  */
+@RequestScoped
+@Transactional
 public abstract class BigHandsDao {
 	/**
 	 *  エンティティマネージャ
 	 */
+	@PersistenceContext(unitName="BigHandsJTA")
 	protected EntityManager entMng;
 	/**
 	 * エンティティマネージャ・ファクトリー
@@ -34,6 +40,18 @@ public abstract class BigHandsDao {
 		try {
 			factory = Persistence.createEntityManagerFactory("BigHandsJTA");
 			entMng = factory.createEntityManager();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * コンストラクタ.
+	 * @param EntityManagerFactory 単体テスト用に手動で生成したもの
+	 */
+	public BigHandsDao(EntityManagerFactory emFactory) {
+		try {
+			factory = emFactory;
+			entMng = emFactory.createEntityManager();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -54,8 +72,15 @@ public abstract class BigHandsDao {
 		entMng = null;
 		factory = null;
 	}
-	protected List<EntityIF> exeNamedQuery(String queryName) throws Exception {
-		List<EntityIF> result = new ArrayList<EntityIF>();
+	/**
+	 * 子クラスで仕様するためのメソッド<br/>
+	 * クエリ名を引数に対象のJPQLを実行する
+	 * @param queryName クエリ名
+	 * @return 取得結果
+	 * @throws Exception 想定外のエラー
+	 */
+	protected <T> List<T> exeNamedQuery(String queryName, T cls) throws Exception {
+		List<T> result = null;
 		try {
 			setUp();
 			Query que = entMng.createNamedQuery(queryName, EntityIF.class);
@@ -66,14 +91,14 @@ public abstract class BigHandsDao {
 			e.printStackTrace();
 			throw new BigHandsCodingRuleException(e);
 		}
-		try {
-			for (EntityIF ent : result) {
-				EntityIF inter = (EntityIF) ent;
-				result.add(inter);
-			}
-		} catch (ClassCastException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			for (Class<? extends EntityIF> ent : result) {
+//				EntityIF inter = (EntityIF) ent;
+//				result.add(inter);
+//			}
+//		} catch (ClassCastException e) {
+//			e.printStackTrace();
+//		}
 		return result;
 	}
 	/**
@@ -86,7 +111,7 @@ public abstract class BigHandsDao {
 		List<EntityIF> result = null;
 		
 		try {
-			result = exeNamedQuery(ent.findAll());
+			result = exeNamedQuery(ent.findAll(), ent);
 			finish();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,4 +119,11 @@ public abstract class BigHandsDao {
 		}
 		return result;
 	}
+	/**
+	 * 子クラスで実装するメソッド<br/>
+	 * リスト内のEntityIFを対象クラスへキャスト、設定する、返却
+	 * @param list EntityIFのリスト
+	 * @return　対象のクラスへコンバートしたList
+	 */
+	public abstract List<EntityIF> exeQuery(EntityIF ent);
 }

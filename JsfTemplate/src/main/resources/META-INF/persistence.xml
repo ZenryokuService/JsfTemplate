@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	サーバーにデータソースの指定を行う場合
+	<jta-data-source>を指定する必要がある
+-->
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="BigHandsJTA" transaction-type="JTA">
         <jta-data-source>jdbc/BigHandsDB</jta-data-source>
