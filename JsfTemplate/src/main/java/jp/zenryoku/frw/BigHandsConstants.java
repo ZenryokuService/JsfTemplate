@@ -1,7 +1,7 @@
 package jp.zenryoku.frw;
 
 /**
- * このプレームワークで使用する、定数クラス<br/>
+ * このプレームワークで使用する、定数クラス<br>
  * 各種プロパティは列挙型を使用する
  * 
  * @author ZenryokuService

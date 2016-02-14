@@ -4,7 +4,7 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 
 /**
- * このフレームワークで使用する、基本のヘッダメニューモデル<br/>
+ * このフレームワークで使用する、基本のヘッダメニューモデル<br>
  * 
  * @author ZenryokuService
  */
@@ -13,7 +13,7 @@ public class HeaderMenuBar {
 	private MenuModel menu;
 
 	/**
-	 * ヘッダメニューモデルの作成を行います<br/>
+	 * ヘッダメニューモデルの作成を行います<br>
 	 */
 	public HeaderMenuBar() {
 		// MenuModel実装クラス

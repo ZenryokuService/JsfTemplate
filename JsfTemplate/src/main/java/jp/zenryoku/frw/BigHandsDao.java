@@ -16,7 +16,7 @@ import jp.zenryoku.frw.exceptions.BigHandsCodingRuleException;
 
 /**
  * BigHands用DAO.
- * 必要に応じ拡張して使用する<br/>
+ * 必要に応じ拡張して使用する<br>
  * 
  * @author ZenryokuService
  */
@@ -46,7 +46,7 @@ public abstract class BigHandsDao {
 	}
 	/**
 	 * コンストラクタ.
-	 * @param EntityManagerFactory 単体テスト用に手動で生成したもの
+	 * @param emFactory 単体テスト用に手動で生成したもの
 	 */
 	public BigHandsDao(EntityManagerFactory emFactory) {
 		try {
@@ -63,7 +63,7 @@ public abstract class BigHandsDao {
 		entMng.getTransaction().begin();
 	}
 	/**
-	 * EntityManagerの起動後にトランザクションを閉じるなど<br/>
+	 * EntityManagerの起動後にトランザクションを閉じるなど<br>
 	 * 後処理を行う
 	 */
 	public void finish() {
@@ -73,7 +73,7 @@ public abstract class BigHandsDao {
 		factory = null;
 	}
 	/**
-	 * 子クラスで仕様するためのメソッド<br/>
+	 * 子クラスで仕様するためのメソッド<br>
 	 * クエリ名を引数に対象のJPQLを実行する
 	 * @param queryName クエリ名
 	 * @return 取得結果
@@ -102,10 +102,11 @@ public abstract class BigHandsDao {
 		return result;
 	}
 	/**
-	 * Entityの定義するテーブルデータをすべて取得する.
-	 * 
+	 * Entityの定義するテーブルデータをすべて取得する<br>
+	 * select * from Entity の定義するテーブルの結果を返却する。
 	 * @param ent EntityIFを実装したエンティティ
-	 * @return select * from Entity の定義するテーブルの結果
+	 * @return 検索結果
+	 * @throws Exception JPAに関する想定外のエラー
 	 */
 	public List<EntityIF> exeFindAll(EntityIF ent) throws Exception{
 		List<EntityIF> result = null;
@@ -120,10 +121,10 @@ public abstract class BigHandsDao {
 		return result;
 	}
 	/**
-	 * 子クラスで実装するメソッド<br/>
+	 * 子クラスで実装するメソッド<br>
 	 * リスト内のEntityIFを対象クラスへキャスト、設定する、返却
-	 * @param list EntityIFのリスト
-	 * @return　対象のクラスへコンバートしたList
+	 * @param ent 対象データのEntity
+	 * @return　検索結果List
 	 */
 	public abstract List<EntityIF> exeQuery(EntityIF ent);
 }

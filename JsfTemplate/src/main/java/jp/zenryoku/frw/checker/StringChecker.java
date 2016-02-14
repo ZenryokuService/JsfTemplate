@@ -6,14 +6,14 @@ import jp.zenryoku.frw.BigHandsConstants;
 import jp.zenryoku.frw.util.StringUtil;
 
 /**
- * 文字列に関して、各種チェック処理を行う<br/>
+ * 文字列に関して、各種チェック処理を行う<br>
  * 
  * @author ZenryokuService
  */
 @SuppressWarnings("serial")
 public class StringChecker implements Serializable {
 	/**
-	 * XMLファイルであることをチェックする。<br/>
+	 * XMLファイルであることをチェックする。<br>
 	 * ベース名でないとfalseを返却する
 	 * 
 	 * @param fileName ファイルの名前(拡張子を含む)
@@ -32,7 +32,7 @@ public class StringChecker implements Serializable {
 	}
 	/**
 	 * fileNameにパスが含まれていないことをチェックする。
-	 * 1.fileNameに"/"が含まれていないことをチェック<br/>
+	 * 1.fileNameに"/"が含まれていないことをチェック<br>
 	 * 
 	 * @param fileName チェックするファイル名
 	 * @return true:ファイル名のみ false:パスが含まれている
@@ -43,7 +43,7 @@ public class StringChecker implements Serializable {
 		return b == false;
 	}
 	/**
-	 * fileNameが"."の含むことをチェック<br/>
+	 * fileNameが"."の含むことをチェック<br>
 	 * @param str 検証ボジレツ
 	 * @return true:形式が合っている false:形式が違う
 	 */

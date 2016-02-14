@@ -12,7 +12,7 @@ import jp.zenryoku.frw.EntityIF;
 
 
 /**
- * The persistent class for the "MenuMST" database table.<br/>
+ * The persistent class for the "MenuMST" database table.<br>
  * 
  */
 @Entity
@@ -59,7 +59,7 @@ public class MenuMST implements EntityIF {
 	private Integer role;
 
 	/**
-	 * コンストラクタ<br/>
+	 * コンストラクタ<br>
 	 */
 	public MenuMST() {
 	}
@@ -96,7 +96,8 @@ public class MenuMST implements EntityIF {
 	}
 
 	/**
-	 * @param menuMstId_ the menuMstId_ to set
+	 * @param menuMstId the menuMstId to set
+	 * 
 	 */
 	public void setMenuMstId_(Integer menuMstId) {
 		this.menuMstId = menuMstId;

@@ -12,7 +12,7 @@ import jp.zenryoku.frw.EntityIF;
 import jp.zenryoku.frw.entity.MenuMST;
 
 /**
- * MenuMSTのデータを取得するためのDAOクラス<br/>
+ * MenuMSTのデータを取得するためのDAOクラス<br>
  * MenuMSTクラスとセットにして仕様する
  * 
  * @author ZenryokuService
@@ -26,15 +26,18 @@ public class MenuMSTDao extends BigHandsDao {
 	}
 	/**
 	 * コンストラクタ:単体テスト用
+	 * 
+	 * @param fa　エンティティマネージャをプロパティ指定して取得する
 	 */
 	public MenuMSTDao(EntityManagerFactory fa) {
 		super(fa);
 	}
 	/**
-	 * 権限レベルが９以上( < 9)データを取得する<br/>
+	 * 権限レベルが９以上( < 9)データを取得する<br>
 	 * 
-	 * @return 検索結果
-	 * @throws Exception 想定外のエラー
+	 * @param cls　エンティティクラス
+	 * @return 検索の結果
+	 * @throws Exception JPQL実行中の想定外エラー
 	 */
 	public <T> List<T> getAllRole(T cls) throws Exception {
 		List<T> res = exeNamedQuery(MenuMST.GET_ALL_ROLE, cls);
@@ -42,7 +45,7 @@ public class MenuMSTDao extends BigHandsDao {
 		return res;
 	}
 	/**
-	 * 取得したメニューをソートして<br/>
+	 * 取得したメニューをソートして<br>
 	 * ユーザー権限,に対応するメニューを取得する
 	 */
 	@Override

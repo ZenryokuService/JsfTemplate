@@ -16,9 +16,9 @@ import jp.zenryoku.frw.BigHandsConstants;
 public class PropertyUtil implements Serializable {
 	
 	/**
-	 * persistence.xmlなどXMLファイルを読み込み<br/>
-	 * Propertiesクラスを返却する<br/>
-	 * ＜例＞<br/>
+	 * persistence.xmlなどXMLファイルを読み込み<br>
+	 * Propertiesクラスを返却する<br>
+	 * ＜例＞<br>
 	 * META-INF/fileNameのXMLファイルを読み込む
 	 * 
 	 * @param fileName 読み込む対象のファイル名

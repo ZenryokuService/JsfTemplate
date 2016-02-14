@@ -56,7 +56,7 @@ public class MenuMSTDaoTest {
 		return p;
 	}
 	/**
-	 * テストのセットアップ<br/>
+	 * テストのセットアップ<br>
 	 */
 	@Before
 	public void setUpCLass() {		

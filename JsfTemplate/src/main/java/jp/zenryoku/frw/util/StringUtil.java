@@ -5,14 +5,14 @@ import java.io.Serializable;
 import jp.zenryoku.frw.BigHandsConstants;
 
 /**
- * 文字列関連のユーティリティークラス1<br/>
+ * 文字列関連のユーティリティークラス1<br>
  * 
  * @author ZenryokuService
  */
 @SuppressWarnings("serial")
 public class StringUtil implements Serializable{
 	/**
-	 * ファイル名から拡張子部分を取得する1<br/>
+	 * ファイル名から拡張子部分を取得する1<br>
 	 * 
 	 * @param fileName ファイル名
 	 * @return 拡張子"."を含まない

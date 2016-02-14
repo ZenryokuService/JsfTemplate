@@ -5,7 +5,7 @@ import javax.inject.Named;
 import jp.zenryoku.frw.backingbean.KanriBeanIF;
 import jp.zenryoku.frw.component.menu.HeaderMenuBar;
 /**
- * GooleMap画面の管理ビーン<br/>
+ * GooleMap画面の管理ビーン<br>
  * @author ZenryokuService
  */
 @Named("gmapBean")
