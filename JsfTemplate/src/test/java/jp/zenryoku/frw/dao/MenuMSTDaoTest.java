@@ -82,6 +82,7 @@ public class MenuMSTDaoTest {
 	private void chkValues(Object o) {
 		// 値の取得確認
 		assertNotNull(o);
+		System.out.println("*** Object " + o.toString() + "***");
 		// Listの場合
 		if (o instanceof List) {
 			List list = (List) o;
@@ -99,9 +100,16 @@ public class MenuMSTDaoTest {
 		System.out.println("test1");
 		EntityManager em = Persistence.createEntityManagerFactory("BigHandsNonJta").createEntityManager();
 		em.getTransaction().begin();
-		Query q = em.createNativeQuery("select 1 from dual");
-		Integer i = q.getFirstResult();
-		assertNotNull(i);
+		MenuMST menu = new MenuMST();
+		try {
+			Query q = em.createNamedQuery(menu.findAll(), MenuMST.class);
+			List<EntityIF> list = q.getResultList();
+			assertNotNull(list);
+			chkValues(list);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
 		em.close();
 		
 		

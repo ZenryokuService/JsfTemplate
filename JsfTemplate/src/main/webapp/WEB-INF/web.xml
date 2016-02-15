@@ -4,6 +4,14 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<display-name>Simple JSF2 Application with Primefaces</display-name>
+	<filter>
+	    <filter-name>masterFilter</filter-name>
+	    <filter-class>jp.zenryoku.frw.servlet.filter.ServletFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>masterFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>

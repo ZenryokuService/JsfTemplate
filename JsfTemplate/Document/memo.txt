@@ -1,0 +1,13 @@
+アーキテクチャーについて
+
+1.サーブレットのリクエストハンドルなどを行うFilterクラスから下記ファイルを読み込み、処理クラスを取得して実行する
+　/resources/filters.xml
+
+2.PhaseListenerに関しても同様で
+  /resources/phases.xml
+
+3.Intercepterも同様
+ /resources/intercept.xml
+ 
+ 4.DBに登録したデータで画面のカスタマイズを可能にする
+ ・MenuMSTにより、メニューのカスタマイズを行う
