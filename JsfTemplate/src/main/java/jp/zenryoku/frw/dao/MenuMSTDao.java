@@ -48,8 +48,11 @@ public class MenuMSTDao extends BigHandsDao {
 	 * 取得したメニューをソートして<br>
 	 * ユーザー権限,に対応するメニューを取得する
 	 */
-	@Override
-	public List<EntityIF> exeQuery(EntityIF entList){
+	public List<MenuMST> selectMenu(MenuMST ent) {
+		
+		return null;
+	}
+	public List<EntityIF> exeQuery(EntityIF ent){
 		return null;
 	}
 }

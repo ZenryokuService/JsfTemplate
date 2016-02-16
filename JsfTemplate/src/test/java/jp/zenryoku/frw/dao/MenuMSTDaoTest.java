@@ -40,6 +40,8 @@ public class MenuMSTDaoTest {
 	private MenuMSTDao dao;
 	/** EntityManagerFactroy */
 	private EntityManagerFactory factory;
+	/** EntityManager */
+	private EntityManager em;
 	/**
 	 * persistence.xmlを読み込む
 	 * @return Context persistence.xmlを読み込んだクラス
@@ -61,6 +63,8 @@ public class MenuMSTDaoTest {
 	@Before
 	public void setUpCLass() {		
 		System.out.println("*** setUp ***");
+		em = Persistence.createEntityManagerFactory("BigHandsNonJta").createEntityManager();
+		em.getTransaction().begin();
 		if (menu == null) {
 			menu = new MenuMST();
 		}
@@ -89,47 +93,48 @@ public class MenuMSTDaoTest {
 			// 0件取得チェック
 			assertNotSame(0, list.size());
 			for (Object obj : list) {
-				System.out.println("ListValue:" + obj);
+				if (obj instanceof MenuMST) {
+					MenuMST menu = (MenuMST) obj;
+					System.out.println("MenuName:" + menu.getMenuName());
+				}
 			}
 		} else {
 			System.out.println("ObjectValue:" + o);
 		}
 	}
+	/**
+	 * 接続、取得のテスト
+	 */
 	@Test
 	public void test01() {
-		System.out.println("test1");
-		EntityManager em = Persistence.createEntityManagerFactory("BigHandsNonJta").createEntityManager();
-		em.getTransaction().begin();
+		System.out.println("*** test01 ***");
 		MenuMST menu = new MenuMST();
 		try {
 			Query q = em.createNamedQuery(menu.findAll(), MenuMST.class);
 			List<EntityIF> list = q.getResultList();
+			em.clear();
 			assertNotNull(list);
 			chkValues(list);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-
 		em.close();
-		
-		
 	}
-//	/**
-//	 * CASE:1. データの取得を確認する
-//	 */
-//	public void testMenuMST() {
-//		List<MenuMST> list = new ArrayList<MenuMST>();
-//		
-//		try {
-//			assertNotNull(menu);
-//			List<EntityIF> entList  = dao.exeFindAll(menu);
-//			assertNotNull(entList);
-//			
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	/**
+	 * CASE:1. データの取得を確認する
+	 */
+	public void testMenuMST() {
+		System.out.println("*** Case1 ***");
+		try {
+			assertNotNull(menu);
+			List<EntityIF> entList  = dao.getAllRole(menu);
+			assertNotNull(entList);
+			em.clear();
+			chkValues(entList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 //	/**
 //	 * CASE:2. role_idを指定しての取得(MenuMST.getAllRole)
 //	 */

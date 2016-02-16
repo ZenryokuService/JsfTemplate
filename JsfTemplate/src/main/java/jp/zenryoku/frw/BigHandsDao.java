@@ -126,5 +126,5 @@ public abstract class BigHandsDao {
 	 * @param ent 対象データのEntity
 	 * @return　検索結果List
 	 */
-	public abstract List<EntityIF> exeQuery(EntityIF ent);
+//	public abstract List<EntityIF> exeQuery(EntityIF ent);
 }
