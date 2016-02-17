@@ -1,5 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow
-	 xmlns:pageflow="http://www.sybase.com/suade/pageflow" 
-	 id="pf14523916550940"
-	 configfile="jp.zenryoku/src/main/webapp/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14523916550940" configfile="/JsfTemplate/src/main/webapp/WEB-INF/faces-config.xml"/>
