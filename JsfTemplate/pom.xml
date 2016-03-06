@@ -27,12 +27,37 @@
 			<artifactId>appserv-rt</artifactId>
 			<version>3.2-b06</version>
 		</dependency>
-		<!-- Primefaces -->
+		<!-- EL-API -->
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jboss-mdr</artifactId>
+			<version>2.0.1.GA</version>
+		</dependency>
+		<!-- File Upload -->
+		  <dependency>
+         <groupId>commons-fileupload</groupId>
+         <artifactId>commons-fileupload</artifactId>
+         <version>1.3</version>
+     </dependency>
+		<!-- PrimeFaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>5.3</version>
 		</dependency>
+		<!-- PrimeFaces Theme -->
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>all-themes</artifactId>

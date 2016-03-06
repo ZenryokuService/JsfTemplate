@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
+<web-app
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    id="BigHands" version="3.0">
 	<display-name>Simple JSF2 Application with Primefaces</display-name>
 	<filter>
-	    <filter-name>masterFilter</filter-name>
-	    <filter-class>jp.zenryoku.frw.servlet.filter.ServletFilter</filter-class>
+		<filter-name>masterFilter</filter-name>
+		<filter-class>jp.zenryoku.frw.servlet.filter.ServletFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>masterFilter</filter-name>
@@ -36,6 +38,15 @@
 	<context-param>
 		<param-name>facelets.FACELETS_LIBRARIES</param-name>
 		<param-value>/WEB-INF/gmaps4jsf-facelets-taglib.xml</param-value>
+	</context-param>
+	<!-- EL Resolver -->
+   <context-param>
+      <param-name>com.sun.faces.expressionFactory</param-name>
+      <param-value>com.sun.el.ExpressionFactoryImpl</param-value>
+   </context-param>
+	<context-param>
+		<param-name>com.ibm.ws.jsf.LOAD_FACES_CONFIG_AT_STARTUP</param-name>
+		<param-value>true</param-value>
 	</context-param>
 </web-app>
 <!-- - See more at: http://www.itcuties.com/j2ee/getting-started-with-primefaces-using-eclipse-ide-and-maven/#sthash.ixgJ4o0O.dpuf -->

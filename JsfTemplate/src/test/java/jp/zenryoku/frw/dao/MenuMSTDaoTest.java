@@ -127,7 +127,7 @@ public class MenuMSTDaoTest {
 		System.out.println("*** Case1 ***");
 		try {
 			assertNotNull(menu);
-			List<EntityIF> entList  = dao.getAllRole(menu);
+			List<MenuMST> entList  = dao.getAllRole(menu);
 			assertNotNull(entList);
 			em.clear();
 			chkValues(entList);

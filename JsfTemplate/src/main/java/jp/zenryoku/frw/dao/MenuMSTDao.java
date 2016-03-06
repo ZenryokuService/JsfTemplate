@@ -3,6 +3,7 @@ package jp.zenryoku.frw.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -17,6 +18,7 @@ import jp.zenryoku.frw.entity.MenuMST;
  * 
  * @author ZenryokuService
  */
+@Stateless
 public class MenuMSTDao extends BigHandsDao {
 	/**
 	 * コンストラクタ

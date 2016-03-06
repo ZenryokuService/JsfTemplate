@@ -4,7 +4,15 @@
 	    xmlns:ui="http://java.sun.com/jsf/facelets"
 	    xmlns:p="http://primefaces.org/ui" >
 	<h:form id="head">
-		<!-- HeaderMeniBar 参照 -->
-		<h:outputText value="Header"/>
+		<p:panel id="heaedPanel" togglable="false" closable="false">
+			<f:facet name="header">
+				<p:outputLabel>userName</p:outputLabel>
+			</f:facet>
+<!-- 			<p:graphicImage value=""/>			 -->
+				<p:outputLabel>BigHandsImage</p:outputLabel>
+			<f:facet id="footer" toggle="false" closable="false">
+				<p:menubar model="#{headerCtl.menuModel}"/>
+			</f:facet>
+		</p:panel>
 	</h:form>	
 </ui:composition>

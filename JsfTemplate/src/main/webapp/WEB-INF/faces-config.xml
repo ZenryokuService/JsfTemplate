@@ -4,7 +4,6 @@
 	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	    version="2.2">
-
     <lifecycle>
         <phase-listener>jp.zenryoku.frw.listener.RemoteViewListener</phase-listener>
         <phase-listener>jp.zenryoku.frw.listener.ApplyRequestListener</phase-listener>
@@ -12,5 +11,5 @@
         <phase-listener>jp.zenryoku.frw.listener.UpdateMedelListener</phase-listener>
         <phase-listener>jp.zenryoku.frw.listener.InvokeApplicationListener</phase-listener>
         <phase-listener>jp.zenryoku.frw.listener.RendaerResponseListener</phase-listener>
-    </lifecycle>	
+    </lifecycle>
 </faces-config>

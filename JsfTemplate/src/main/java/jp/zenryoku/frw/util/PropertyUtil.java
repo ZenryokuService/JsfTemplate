@@ -27,16 +27,16 @@ public class PropertyUtil implements Serializable {
 	 */
 	public static Properties getPersistence(String fileName) throws IOException {
 		Properties prop = new Properties();
-		InputStream inp = null;
-		
-		switch(fileName) {
-		case BigHandsConstants.XML:
-			inp = ClassLoader.getSystemResourceAsStream(BigHandsConstants.ROOT_DIR + fileName);
-			break;
-		case BigHandsConstants.PROPS:
-			inp = ClassLoader.getSystemResourceAsStream(BigHandsConstants.ROOT_DIR + fileName);
-		}
-		prop.loadFromXML(inp);
+//		InputStream inp = null;
+//		
+//		switch(fileName) {
+//		case BigHandsConstants.XML:
+////			inp = ClassLoader.getSystemResourceAsStream(BigHandsConstants.ROOT_DIR + fileName);
+//			break;
+//		case BigHandsConstants.PROPS:
+////			inp = ClassLoader.getSystemResourceAsStream(BigHandsConstants.ROOT_DIR + fileName);
+//		}
+////		prop.loadFromXML(inp);
 		return prop;
 	}
 }

@@ -2,7 +2,7 @@ package jp.zenryoku.bighands.gmap;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import jp.zenryoku.frw.backingbean.KanriBeanIF;
+import jp.zenryoku.frw.backingbean.BackingBeanIF;
 import jp.zenryoku.frw.component.menu.HeaderMenuBar;
 /**
  * GooleMap画面の管理ビーン<br>
@@ -10,7 +10,7 @@ import jp.zenryoku.frw.component.menu.HeaderMenuBar;
  */
 @Named("gmapBean")
 @SuppressWarnings("serial")
-public class GmapBean implements KanriBeanIF {
+public class GmapBean implements BackingBeanIF {
 	/** ヘッダメニュー　*/
 	private HeaderMenuBar headMenu;
 

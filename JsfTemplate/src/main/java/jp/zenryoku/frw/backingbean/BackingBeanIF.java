@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 1.init():初期化メソッド
  * @author ZenryokuService
  */
-public interface KanriBeanIF extends Serializable {
+public interface BackingBeanIF extends Serializable {
 	/** 初期化メソッド */
 	public void init();
 }
