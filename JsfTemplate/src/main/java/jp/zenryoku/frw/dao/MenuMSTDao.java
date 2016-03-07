@@ -1,5 +1,6 @@
 package jp.zenryoku.frw.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,42 +20,21 @@ import jp.zenryoku.frw.entity.MenuMST;
  * @author ZenryokuService
  */
 @Stateless
-public class MenuMSTDao extends BigHandsDao {
+public class MenuMSTDao extends BigHandsDao<MenuMST> {
+
 	/**
-	 * コンストラクタ
+	 * UID
 	 */
-	public MenuMSTDao() {
-		super();
-	}
+	private static final long serialVersionUID = 2111640869520096709L;
+
 	/**
-	 * コンストラクタ:単体テスト用
-	 * 
-	 * @param fa　エンティティマネージャをプロパティ指定して取得する
+	 * SQL作成のメソッド、実行処理はスーパークラスで行う。
 	 */
-	public MenuMSTDao(EntityManagerFactory fa) {
-		super(fa);
-	}
-	/**
-	 * 権限レベルが９以上( < 9)データを取得する<br>
-	 * 
-	 * @param cls　エンティティクラス
-	 * @return 検索の結果
-	 * @throws Exception JPQL実行中の想定外エラー
-	 */
-	public <T> List<T> getAllRole(T cls) throws Exception {
-		List<T> res = exeNamedQuery(MenuMST.GET_ALL_ROLE, cls);
-//		list.add
-		return res;
-	}
-	/**
-	 * 取得したメニューをソートして<br>
-	 * ユーザー権限,に対応するメニューを取得する
-	 */
-	public List<MenuMST> selectMenu(MenuMST ent) {
+	@Override
+	public List<MenuMST> execute(MenuMST ent) throws SQLException, Exception {
 		
 		return null;
 	}
-	public List<EntityIF> exeQuery(EntityIF ent){
-		return null;
-	}
+
+
 }

@@ -1,5 +1,7 @@
 package jp.zenryoku.frw;
 
+import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,115 +18,64 @@ import jp.zenryoku.frw.exceptions.BigHandsCodingRuleException;
 
 /**
  * BigHands用DAO.
- * 必要に応じ拡張して使用する<br>
+ * DBアクセス時に使用するスーパーDAOクラス<br>
+ * EntityManagerの管理、EntityManagerFactoryの管理を行う<br>
  * 
  * @author ZenryokuService
  */
-@RequestScoped
-@Transactional
-public abstract class BigHandsDao {
+@SuppressWarnings("serial")
+public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 	/**
-	 *  エンティティマネージャ
+	 * 全てのDAOクラスで使用するEntityManager
 	 */
-	@PersistenceContext(unitName="BigHandsJTA")
-	protected EntityManager entMng;
+	protected EntityManager em;
 	/**
-	 * エンティティマネージャ・ファクトリー
+	 * EntityManagerFactory<br>
+	 * このクラスで管理する
 	 */
 	private EntityManagerFactory factory;
 	/**
-	 * コンストラクタ.
-	 * EntityManager
+	 * コンストラクタ<br>
+	 * 1.EntityManagerの取得を行う<br>
 	 */
 	public BigHandsDao() {
+		// EntityManager作成
+		createEntityManager();
+	}
+
+	/**
+	 * EntityManagerを生成<br>
+	 * 単体テストモードと通常起動モードを指定できる<br>
+	 * @return EntityManager エンティティマネージャ
+	 */
+	private void createEntityManager() {
+		factory = Persistence.createEntityManagerFactory("BigHandsJTA");
+		em = factory.createEntityManager();
+	}
+
+	/**
+	 * トランザクションの開始などSQL実行<br>
+	 */
+	protected void executeQuery(T ent) throws SQLException, Exception {
+		// トランザクション開始
+		em.getTransaction().begin();
+		// 子クラスで実行するメソッド
 		try {
-			factory = Persistence.createEntityManagerFactory("BigHandsJTA");
-			entMng = factory.createEntityManager();
-		} catch (Exception e) {
+			execute(ent);
+		} catch(Exception e) {
+			if(e instanceof SQLException) {
+				// TODO-[Implement ExceptionHandle]
+			} else {
+				// TODO-[Implement ExceptionHandle]
+			}
 			e.printStackTrace();
+			em.getTransaction().rollback();
+		} finally {
+			factory.close();
 		}
 	}
 	/**
-	 * コンストラクタ.
-	 * @param emFactory 単体テスト用に手動で生成したもの
+	 * こクラスで実装する、DBアクセス処理メソッド
 	 */
-	public BigHandsDao(EntityManagerFactory emFactory) {
-		try {
-			factory = emFactory;
-			entMng = emFactory.createEntityManager();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	/**
-	 * EntityManagerを起動するための準備を行います。
-	 */
-	protected void setUp() {
-		entMng.getTransaction().begin();
-	}
-	/**
-	 * EntityManagerの起動後にトランザクションを閉じるなど<br>
-	 * 後処理を行う
-	 */
-	public void finish() {
-		entMng.close();
-		factory.close();
-		entMng = null;
-		factory = null;
-	}
-	/**
-	 * 子クラスで仕様するためのメソッド<br>
-	 * クエリ名を引数に対象のJPQLを実行する
-	 * @param queryName クエリ名
-	 * @return 取得結果
-	 * @throws Exception 想定外のエラー
-	 */
-	protected <T> List<T> exeNamedQuery(String queryName, T cls) throws Exception {
-		List<T> result = null;
-		try {
-			setUp();
-			Query que = entMng.createNamedQuery(queryName, EntityIF.class);
-			result = que.getResultList();
-			entMng.getTransaction().commit();
-			finish();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new BigHandsCodingRuleException(e);
-		}
-//		try {
-//			for (Class<? extends EntityIF> ent : result) {
-//				EntityIF inter = (EntityIF) ent;
-//				result.add(inter);
-//			}
-//		} catch (ClassCastException e) {
-//			e.printStackTrace();
-//		}
-		return result;
-	}
-	/**
-	 * Entityの定義するテーブルデータをすべて取得する<br>
-	 * select * from Entity の定義するテーブルの結果を返却する。
-	 * @param ent EntityIFを実装したエンティティ
-	 * @return 検索結果
-	 * @throws Exception JPAに関する想定外のエラー
-	 */
-	public List<EntityIF> exeFindAll(EntityIF ent) throws Exception{
-		List<EntityIF> result = null;
-		
-		try {
-			result = exeNamedQuery(ent.findAll(), ent);
-			finish();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new BigHandsCodingRuleException(e);
-		}
-		return result;
-	}
-	/**
-	 * 子クラスで実装するメソッド<br>
-	 * リスト内のEntityIFを対象クラスへキャスト、設定する、返却
-	 * @param ent 対象データのEntity
-	 * @return　検索結果List
-	 */
-//	public abstract List<EntityIF> exeQuery(EntityIF ent);
+	public abstract List<T> execute(T ent) throws Exception;
 }

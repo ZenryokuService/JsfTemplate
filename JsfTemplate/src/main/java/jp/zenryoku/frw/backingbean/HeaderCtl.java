@@ -1,5 +1,7 @@
 package jp.zenryoku.frw.backingbean;
 
+import java.util.List;
+
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 
@@ -10,14 +12,15 @@ import jp.zenryoku.frw.entity.MenuMST;
  * init():ログインユーザー名と、共通ヘッダメニューを表示する。
  * @author ZenryokuService
  */
-public class HeaderCtl implements BackingBeanIF {
+public class HeaderCtl extends BackingBean {
 
-	/** MenuMST */
-	private MenuMST menu;
 	/**
 	 * UID
 	 */
 	private static final long serialVersionUID = -7470050477779119598L;
+
+	/** MenuMST */
+	private List<MenuMST> menuList;
 
 	/** MenuBar */
 	private MenuModel menuModel;
@@ -29,11 +32,8 @@ public class HeaderCtl implements BackingBeanIF {
 	 */
 	@Override
 	public void init() {
-		// MenuModelのインスタンスがない場合インスタンスを生成
-		if(menuModel == null) {
-			menuModel = new DefaultMenuModel();
-		}
-		
+		// メニューの作成
+		createMenuModel();
 		
 	}
 
@@ -43,6 +43,7 @@ public class HeaderCtl implements BackingBeanIF {
 	 * 2.各権限に対応するメニューを取得、MenuModelに設定する<br>
 	 */
 	private void createMenuModel() {
+		menuModel = new DefaultMenuModel();
 		
 	}
 
