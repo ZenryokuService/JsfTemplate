@@ -32,8 +32,7 @@ public class MenuMSTDao extends BigHandsDao<MenuMST> {
 	 */
 	@Override
 	public List<MenuMST> execute(MenuMST ent) throws SQLException, Exception {
-		
-		return null;
+		return executeQuery(ent, MenuMST.FIND_ALL);
 	}
 
 

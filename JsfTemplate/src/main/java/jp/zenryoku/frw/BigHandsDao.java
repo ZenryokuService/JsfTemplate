@@ -56,23 +56,34 @@ public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 	/**
 	 * トランザクションの開始などSQL実行<br>
 	 */
-	protected void executeQuery(T ent) throws SQLException, Exception {
+	@SuppressWarnings("unchecked")
+	protected List<T> executeQuery(T ent, String namedQuery) throws SQLException, Exception {
+		// エラーフラグ
+		boolean errFlg = false;
+		List<T> res = null;
 		// トランザクション開始
 		em.getTransaction().begin();
 		// 子クラスで実行するメソッド
 		try {
-			execute(ent);
+			Query q = em.createNamedQuery(namedQuery, ent.getClass());
+			res = q.getResultList();
 		} catch(Exception e) {
+			errFlg = true;
 			if(e instanceof SQLException) {
 				// TODO-[Implement ExceptionHandle]
-			} else {
+			} else if(e instanceof Exception) {
 				// TODO-[Implement ExceptionHandle]
+			} else {
+				e.printStackTrace();
 			}
-			e.printStackTrace();
-			em.getTransaction().rollback();
 		} finally {
+			// エラーフラグTrue時はロールバック
+			if(errFlg) {
+				em.getTransaction().rollback();
+			}
 			factory.close();
 		}
+		return res;
 	}
 	/**
 	 * こクラスで実装する、DBアクセス処理メソッド

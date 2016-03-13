@@ -20,5 +20,5 @@ public abstract class BackingBean implements Serializable {
 	/**
 	 *  子クラスで実装する、初期化メソッド
 	 */
-	public abstract void init();
+	public abstract void init() throws Exception;
 }

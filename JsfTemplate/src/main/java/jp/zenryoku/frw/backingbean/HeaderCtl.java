@@ -2,9 +2,12 @@ package jp.zenryoku.frw.backingbean;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 
+import jp.zenryoku.frw.dao.MenuMSTDao;
 import jp.zenryoku.frw.entity.MenuMST;
 
 /**
@@ -22,8 +25,14 @@ public class HeaderCtl extends BackingBean {
 	/** MenuMST */
 	private List<MenuMST> menuList;
 
+	/** MenuMSTDao */
+	@Inject
+	private MenuMSTDao dao;
+
 	/** MenuBar */
 	private MenuModel menuModel;
+
+	
 
 	/**
 	 * ヘッダの初期表示処理を行う。
@@ -31,10 +40,11 @@ public class HeaderCtl extends BackingBean {
 	 * ・ユーザーの権限により表示するメニューを決定、表示する<br>
 	 */
 	@Override
-	public void init() {
+	public void init() throws Exception {
+		// MenuMST検索
+		selectMenuMST();
 		// メニューの作成
 		createMenuModel();
-		
 	}
 
 	/**
@@ -45,6 +55,16 @@ public class HeaderCtl extends BackingBean {
 	private void createMenuModel() {
 		menuModel = new DefaultMenuModel();
 		
+	}
+
+	/**
+	 * MenuMSTを取得する。
+	 */
+	private void selectMenuMST() throws Exception {
+		if(menuList == null) {
+			MenuMST menu = new MenuMST();
+			menuList = dao.execute(menu);
+		}
 	}
 
 	/**
@@ -60,6 +80,4 @@ public class HeaderCtl extends BackingBean {
 	public void setMenuModel(MenuModel menuModel) {
 		this.menuModel = menuModel;
 	}
-
-	
 }

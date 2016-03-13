@@ -1,18 +1,10 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	    xmlns:f="http://java.sun.com/jsf/core"
-	    xmlns:h="http://java.sun.com/jsf/html"
-	    xmlns:ui="http://java.sun.com/jsf/facelets"
-	    xmlns:p="http://primefaces.org/ui" >
-	<h:form id="head">
-		<p:panel id="heaedPanel" togglable="false" closable="false">
-			<f:facet name="header">
-				<p:outputLabel>userName</p:outputLabel>
-			</f:facet>
-<!-- 			<p:graphicImage value=""/>			 -->
-				<p:outputLabel>BigHandsImage</p:outputLabel>
-			<f:facet id="footer" toggle="false" closable="false">
-				<p:menubar model="#{headerCtl.menuModel}"/>
-			</f:facet>
-		</p:panel>
-	</h:form>	
+			xmlns:f="http://java.sun.com/jsf/core"
+			xmlns:h="http://java.sun.com/jsf/html"
+			xmlns:ui="http://java.sun.com/jsf/facelets"
+			xmlns:p="http://primefaces.org/ui">
+	<h:form id="header_form">
+		<p:outputLabel styleClass="title_label">BigHands</p:outputLabel>
+		<p:outputLabel styleClass="gamen_name">gamenName</p:outputLabel><p:outputLabel styleClass="user_name">userName</p:outputLabel>
+	</h:form>
 </ui:composition>
