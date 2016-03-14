@@ -8,10 +8,11 @@
 >
     <h:head>
         <title>Title</title>
-        <!-- 読み込むファイルの類は全てここで定義する -->
-		<h:outputStylesheet library="css" name="head.css"/>
     </h:head>
     <h:body>
+    	<f:facet name="last">
+	   		<h:outputStylesheet library="css" name="head.css"/>
+    	</f:facet>
         <p:layout fullPage="true">
         	<!-- ヘッダ -->
             <p:layoutUnit position="north" size="100" resizable="false" closable="true" collapsible="true">
