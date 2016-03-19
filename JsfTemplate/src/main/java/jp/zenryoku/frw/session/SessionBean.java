@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.inject.Named;
 
+import jp.zenryoku.frw.entity.UserProperties;
+
 /**
  * BigHandsフレームワークでのセッションを管理する<br>
  * 
@@ -19,6 +21,18 @@ public class SessionBean implements Serializable {
 	/** Loggin Flag */
 	private boolean loginFlg;
 
+	/**
+	 * @return the loginFlg
+	 */
+	public boolean isLoginFlg() {
+		return loginFlg;
+	}
+	/**
+	 * @param loginFlg the loginFlg to set
+	 */
+	public void setLoginFlg(boolean loginFlg) {
+		this.loginFlg = loginFlg;
+	}
 	/**
 	 * @return the userName
 	 */

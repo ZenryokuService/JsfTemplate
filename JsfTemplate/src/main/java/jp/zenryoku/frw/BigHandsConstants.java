@@ -18,5 +18,7 @@ public class BigHandsConstants {
 	public static final String XML = "xml";
 	/** PROPERTYファイルの拡張子 */
 	public static final String PROPS = "properties";
+	/** Filterクラスのパッケージ */
+	public static final String FILTERS = "jp.zenryoku.frw.servlet.filter";
 	
 }

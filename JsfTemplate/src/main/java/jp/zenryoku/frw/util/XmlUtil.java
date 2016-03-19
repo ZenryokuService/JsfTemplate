@@ -12,7 +12,7 @@ import javax.servlet.Filter;
  * @author ZenryokuService
  */
 public class XmlUtil {
-
+	/** XMLファイルの格納先 */
 	public static final String XML_FILE_DIR = "/filters/";
 
 	/**
@@ -33,7 +33,7 @@ public class XmlUtil {
 	/**
 	 * XMLファイルを読み込む
 	 * 
-	 * @param xmlFile XMLファイルの完全パス
+	 * @param xmlFile XMLファイルの名
 	 * @throws IOException ファイル読み込み時のエラー
 	 */
 	public static void readXml(String xmlFile) throws IOException {

@@ -1,8 +1,9 @@
-package jp.zenryoku.frw.session;
+package jp.zenryoku.frw.entity;
 
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * ユーザーの各種プロパティを保持<br>
@@ -13,5 +14,7 @@ import javax.persistence.Entity;
 @Entity(name="UserProperty")
 @SuppressWarnings("serial")
 public class UserProperties implements Serializable {
-
+	/** UserId */
+	@Id
+	private int userId;
 }
