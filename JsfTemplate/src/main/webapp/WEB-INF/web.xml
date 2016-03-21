@@ -48,5 +48,33 @@
 		<param-name>com.ibm.ws.jsf.LOAD_FACES_CONFIG_AT_STARTUP</param-name>
 		<param-value>true</param-value>
 	</context-param>
+	<context-param>
+	    <param-name>org.apache.myfaces.ERROR_HANDLING</param-name>
+	    <param-value>true</param-value>
+	</context-param>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>jp.zenryoku.frw.exceptions.BigHandsCodingRuleException</exception-type>
+		<location>/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>jp.zenryoku.frw.exceptions.ServletFilterException</exception-type>
+		<location>/error.xhtml</location>
+	</error-page>
 </web-app>
 <!-- - See more at: http://www.itcuties.com/j2ee/getting-started-with-primefaces-using-eclipse-ide-and-maven/#sthash.ixgJ4o0O.dpuf -->

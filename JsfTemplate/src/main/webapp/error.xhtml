@@ -1,0 +1,13 @@
+<ui:composition
+		     xmlns="http://www.w3.org/1999/xhtml"
+		     xmlns:f="http://java.sun.com/jsf/core"
+		     xmlns:h="http://java.sun.com/jsf/html"
+		     xmlns:ui="http://java.sun.com/jsf/facelets"
+		     xmlns:m="http://code.google.com/p/gmaps4jsf/"
+		     xmlns:p="http://primefaces.org/ui">
+	     <h1>JSF2.2 Error Page</h1>
+	     <h:outputText vlaue="ERROR_CODE:#{exceptionBean.statusCd"/>
+	     <h:outputText vlaue="ERROR_CODE:#{exceptionBean.message"/>
+	     <h:outputText vlaue="ERROR_CODE:#{exceptionBean.exception"/>
+	     <h:outputText vlaue="ERROR_CODE:#{exceptionBean.uri"/>
+</ui:composition>

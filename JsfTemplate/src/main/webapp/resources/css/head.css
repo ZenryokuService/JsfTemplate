@@ -1,7 +1,19 @@
 .title_label {
-	vertical-align: middle;
+	margin_left : auto;
+	margin_right : auto;
+	margin: 0px auto;
+	text-align : center;
 }
 
 .gamen_name {
+	margin-left: 0;
+	float: left;
+	text-align: left;
 	color: blue;
+}
+.user_name {
+	margin-right: 0;
+	float: right;
+	text-align: right;
+	color: red;
 }

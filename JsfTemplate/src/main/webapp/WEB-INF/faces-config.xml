@@ -12,4 +12,9 @@
         <phase-listener>jp.zenryoku.frw.listener.InvokeApplicationListener</phase-listener>
         <phase-listener>jp.zenryoku.frw.listener.RendaerResponseListener</phase-listener>
     </lifecycle>
+    <factory>
+    	<exception-handler-factory>
+    		jp.zenryoku.frw.exceptions.BigHandsExceptionHandlerFactory
+    	</exception-handler-factory>
+    </factory>
 </faces-config>

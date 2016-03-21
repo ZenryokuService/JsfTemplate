@@ -3,9 +3,13 @@
 			xmlns:h="http://java.sun.com/jsf/html"
 			xmlns:ui="http://java.sun.com/jsf/facelets"
 			xmlns:p="http://primefaces.org/ui">
+	<h:outputLabel styleClass="gamen_name">gamenName</h:outputLabel>
+	<h:graphicImage styleClass="title_label" value="resources/img/BigHands.png" height="60" />
+	<h:outputLabel styleClass="user_name">userName</h:outputLabel>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{headerCtl.init}"/>
+	</f:metadata>
 	<h:form id="header_form">
-		<h:outputLabel styleClass="gamen_name">gamenName</h:outputLabel>
-		<h:graphicImage value="resources/img/BigHands.png" height="80" />
-		<h:outputLabel styleClass="user_name">userName</h:outputLabel>
+		<p:menubar model="#{headerCtl.menuModel}"/>
 	</h:form>
 </ui:composition>

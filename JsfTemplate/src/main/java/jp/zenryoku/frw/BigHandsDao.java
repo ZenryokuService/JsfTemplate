@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -24,6 +25,7 @@ import jp.zenryoku.frw.exceptions.BigHandsCodingRuleException;
  * @author ZenryokuService
  */
 @SuppressWarnings("serial")
+@Stateless
 public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 	/**
 	 * 全てのDAOクラスで使用するEntityManager
@@ -39,6 +41,7 @@ public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 	 * 1.EntityManagerの取得を行う<br>
 	 */
 	public BigHandsDao() {
+		System.out.println("*** BigHandsDao.constructor ***");
 		// EntityManager作成
 		createEntityManager();
 	}
@@ -82,6 +85,9 @@ public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 				em.getTransaction().rollback();
 			}
 			factory.close();
+		}
+		if(res == null || res.size() <= 0) {
+			throw new BigHandsCodingRuleException("MenuMSTが取得できませんでした");
 		}
 		return res;
 	}

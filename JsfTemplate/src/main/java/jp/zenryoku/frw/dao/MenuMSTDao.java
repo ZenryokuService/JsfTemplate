@@ -28,6 +28,14 @@ public class MenuMSTDao extends BigHandsDao<MenuMST> {
 	private static final long serialVersionUID = 2111640869520096709L;
 
 	/**
+	 * デフォルトコンストラクタ<br>
+	 * インジェクト時に起動する
+	 */
+	public MenuMSTDao() {
+		super();
+		System.out.println("*** MenuMSTDao.constractor ***");
+	}
+	/**
 	 * SQL作成のメソッド、実行処理はスーパークラスで行う。
 	 */
 	@Override

@@ -1,15 +1,23 @@
 package jp.zenryoku.frw.backingbean;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
+import org.primefaces.model.menu.MenuItem;
 
 import jp.zenryoku.frw.dao.MenuMSTDao;
 import jp.zenryoku.frw.entity.MenuMST;
+import jp.zenryoku.frw.exceptions.BigHandsCodingRuleException;
 import jp.zenryoku.frw.session.SessionBean;
 
 /**
@@ -18,6 +26,7 @@ import jp.zenryoku.frw.session.SessionBean;
  * @author ZenryokuService
  */
 @Named
+@RequestScoped
 public class HeaderCtl extends BackingBean {
 
 	/**
@@ -27,6 +36,10 @@ public class HeaderCtl extends BackingBean {
 
 	/** SessionBean */
 	private SessionBean session;
+
+	/** Login Flag */
+	private boolean loginFlg;
+
 	/** MenuMST */
 	private List<MenuMST> menuList;
 
@@ -48,25 +61,44 @@ public class HeaderCtl extends BackingBean {
 		selectMenuMST();
 		// メニューの作成
 		createMenuModel();
+		// 各コンポーネントにIDを振る
+		menuModel.generateUniqueIds();
 	}
 
 	/**
 	 * DBアクセス及び、MenuModelの作成を行う<br>
+	 * 0.前提として、メニュー情報は取得済みとする
 	 * 1.ユーザーの権限を検証、ログインしていないときは"AllUser"権限を指定<br>
 	 * 2.各権限に対応するメニューを取得、MenuModelに設定する<br>
 	 */
-	private void createMenuModel() {
+	private void createMenuModel() throws Exception {
+		System.out.println("*** createMenuModel ***");
 		menuModel = new DefaultMenuModel();
-		
+		// tmpMap for adding MenuModel
+		Map<Integer, MenuMST> menuMap = new TreeMap<Integer, MenuMST>();
+		// tmpMap for SubMenu, Map<menuId, MenuMST>
+		Map<Integer, MenuMST> subMenu = new HashMap<Integer, MenuMST>();
+		// MenuMST取得
+		for(MenuMST menu : menuList) {
+			DefaultSubMenu sub = new DefaultSubMenu(menu.getMenuName());
+			menuModel.addElement(sub);
+		}
 	}
 
 	/**
-	 * MenuMSTを取得する。
+	 * MenuMSTを取得する。<br>
+	 * menuListがNullでない場合に取得を行う<br>
+	 * ただログインフラグが立っているときは改めて検索を行う
 	 */
 	private void selectMenuMST() throws Exception {
-		if(menuList == null) {
+		if(menuList == null && loginFlg == false) {
 			MenuMST menu = new MenuMST();
 			menuList = dao.execute(menu);
+		} else if(menuList != null && loginFlg == true) {
+			// TODO-[ログイン後にメニューを入れ替える処理の実装予定]
+			throw new BigHandsCodingRuleException("未実装です、のちに実装予定:HeaderCtl.selectMenuMST()");
+		} else {
+			throw new BigHandsCodingRuleException("ログインフラグとメニューの整合性が取れていません");
 		}
 	}
 
@@ -124,6 +156,20 @@ public class HeaderCtl extends BackingBean {
 	 */
 	public void setDao(MenuMSTDao dao) {
 		this.dao = dao;
+	}
+
+	/**
+	 * @return the loginFlg
+	 */
+	public boolean isLoginFlg() {
+		return loginFlg;
+	}
+
+	/**
+	 * @param loginFlg the loginFlg to set
+	 */
+	public void setLoginFlg(boolean loginFlg) {
+		this.loginFlg = loginFlg;
 	}
 	
 }
