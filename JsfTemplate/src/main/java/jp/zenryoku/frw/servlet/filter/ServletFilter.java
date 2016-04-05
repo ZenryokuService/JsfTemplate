@@ -47,6 +47,7 @@ public class ServletFilter implements Filter {
 			if(e instanceof ServletFilterException) {
 				System.out.println("ServletFilterException" + e.getMessage());
 			}
+			System.out.println("*** Message:" + e.getMessage() + " ***");
 			e.printStackTrace();
 		}
 	}

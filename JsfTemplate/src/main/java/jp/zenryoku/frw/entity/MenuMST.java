@@ -57,12 +57,32 @@ public class MenuMST implements EntityIF {
 	 */
 	@Column(name="role_id")
 	private Integer role;
-
+	/**
+	 * 親メニューのID
+	 */
+	@Column(name="parent_id")
+	private Integer parentId;
+	
 	/**
 	 * コンストラクタ<br>
 	 */
 	public MenuMST() {
 	}
+	
+	/**
+	 * @return the parentId
+	 */
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	/**
+	 * @param parentId the parentId to set
+	 */
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
 	/**
 	 * @return the role
 	 */

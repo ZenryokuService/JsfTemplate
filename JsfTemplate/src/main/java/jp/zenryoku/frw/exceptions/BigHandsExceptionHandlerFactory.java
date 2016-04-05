@@ -11,10 +11,19 @@ import javax.faces.context.ExceptionHandlerFactory;
  */
 public class BigHandsExceptionHandlerFactory extends ExceptionHandlerFactory{
 
+	/** parent Factory */
+	private ExceptionHandlerFactory parent;
+
+	/**
+	 * コンストラクタ
+	 */
+	public BigHandsExceptionHandlerFactory(ExceptionHandlerFactory parent) {
+		this.parent = parent;
+	}
+	
 	@Override
 	public ExceptionHandler getExceptionHandler() {
-		System.out.println("*** BigHandsExceptionHandler ***");
-		return null;
+		return new BigHandsExceptionHandler(parent.getExceptionHandler());
 	}
 
 }

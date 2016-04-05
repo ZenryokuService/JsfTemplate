@@ -20,15 +20,15 @@
             </p:layoutUnit>
         	<!-- フッタ -->
             <p:layoutUnit position="south" size="100" resizable="true" closable="true" collapsible="true">
-                <ui:insert name="south">Put default content here, if any.</ui:insert>
+            	<ui:include src="./foot.xhtml"/>
             </p:layoutUnit>
         	<!-- 左サイドバー -->
             <p:layoutUnit position="west" size="200" resizable="true" closable="true" collapsible="true">
-                <ui:insert name="west">Put default content here, if any.</ui:insert>
+            	<ui:include src="./left_side.xhtml"/>
             </p:layoutUnit>
         	<!-- 右サイドバー -->
             <p:layoutUnit position="east" size="200" resizable="true" closable="true" collapsible="true" effect="drop">
-                <ui:insert name="east">Put default content here, if any.</ui:insert>
+            	<ui:include src="./right_side.xhtml"/>
             </p:layoutUnit>
         	<!-- メイン -->
             <p:layoutUnit position="center">

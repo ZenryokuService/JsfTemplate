@@ -2,6 +2,7 @@ package jp.zenryoku.frw.backingbean;
 
 import java.io.Serializable;
 
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 
 import jp.zenryoku.frw.BigHandsDao;
@@ -12,6 +13,7 @@ import jp.zenryoku.frw.BigHandsDao;
  * 
  * @author ZenryokuService
  */
+@Named
 public abstract class BackingBean implements Serializable {
 	/**
 	 * スーパーDAOクラス

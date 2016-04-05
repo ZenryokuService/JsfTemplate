@@ -13,11 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
 
-import org.glassfish.api.logging.LogLevel;
-
 public class BigHandsExceptionHandler extends ExceptionHandlerWrapper {
-	/** ロガー */
-	private static final Logger logger = Logger.getLogger(BigHandsExceptionHandler.class.getName());
 	/** ExceptionHandlerWeapper */
 	private ExceptionHandler wrap;
 
@@ -40,7 +36,7 @@ public class BigHandsExceptionHandler extends ExceptionHandlerWrapper {
 	 * エクセプションハンドル
 	 */
 	public void handle() throws FacesException {
-		System.out.println("BigHandsExceptionHandler");
+		System.out.println("*** BigHandsExceptionHandler ***");
 		// ExceptionQueuedEvents
 		final Iterator<ExceptionQueuedEvent> i = this.getUnhandledExceptionQueuedEvents().iterator();
 		while (i.hasNext()) {
@@ -55,16 +51,14 @@ public class BigHandsExceptionHandler extends ExceptionHandlerWrapper {
 					.getNavigationHandler();
 			// here you do what ever you want with exception
 			try {
-				// log error ?
-				logger.log(LogLevel.WARNING, "Severe Exception Occured");
-				// log.log(Level.SEVERE, "Critical Exception!", t);
 				// redirect error page
 				requestMap.put("exceptionMessage", t.getMessage());
 				nav.performNavigation("/error.xhtml");
 				fc.renderResponse();
-				// remove the comment below if you want to report the error in a
-				// jsf error message
-				// JsfUtil.addErrorMessage(t.getMessage());
+				//JsfUtil.addErrorMessage(t.getMessage());
+			} catch(Exception e) {
+				System.out.println("*** Exception in BigHandsException :" + e.getMessage() + " ***");
+				e.printStackTrace();
 			} finally {
 				// remove it from queue
 				i.remove();

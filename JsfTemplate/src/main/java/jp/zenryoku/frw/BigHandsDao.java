@@ -5,9 +5,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,6 +18,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import jp.zenryoku.frw.exceptions.BigHandsCodingRuleException;
+import jp.zenryoku.frw.interceptor.LogAnno;
 
 /**
  * BigHands用DAO.
@@ -24,6 +27,8 @@ import jp.zenryoku.frw.exceptions.BigHandsCodingRuleException;
  * 
  * @author ZenryokuService
  */
+@LogAnno
+@Named
 @SuppressWarnings("serial")
 @Stateless
 public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
@@ -41,17 +46,24 @@ public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 	 * 1.EntityManagerの取得を行う<br>
 	 */
 	public BigHandsDao() {
-		System.out.println("*** BigHandsDao.constructor ***");
-		// EntityManager作成
-		createEntityManager();
+		if(factory == null) {
+			System.out.println("*** Create EntityManagerFactory ***");
+			// EntityManager作成
+			createEntityManager();
+		}
 	}
-
+	@PreDestroy
+	public void destroy() {
+		System.out.println("*** PreDestroy ***");
+		factory.close();
+	}
 	/**
 	 * EntityManagerを生成<br>
 	 * 単体テストモードと通常起動モードを指定できる<br>
 	 * @return EntityManager エンティティマネージャ
 	 */
 	private void createEntityManager() {
+		System.out.println("*** BigHandsDao.createEntityManager ***");
 		factory = Persistence.createEntityManagerFactory("BigHandsJTA");
 		em = factory.createEntityManager();
 	}
@@ -61,6 +73,7 @@ public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<T> executeQuery(T ent, String namedQuery) throws SQLException, Exception {
+		System.out.println("*** BigHandsDao.executeQuery ***");
 		// エラーフラグ
 		boolean errFlg = false;
 		List<T> res = null;
@@ -70,12 +83,17 @@ public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 		try {
 			Query q = em.createNamedQuery(namedQuery, ent.getClass());
 			res = q.getResultList();
+			em.close();
 		} catch(Exception e) {
 			errFlg = true;
 			if(e instanceof SQLException) {
 				// TODO-[Implement ExceptionHandle]
+				System.out.println("*** in SQLException at executeQuery() ***"); 
+				e.printStackTrace();
 			} else if(e instanceof Exception) {
 				// TODO-[Implement ExceptionHandle]
+				System.out.println("*** in Exception at executeQuery() ***"); 
+				e.printStackTrace();
 			} else {
 				e.printStackTrace();
 			}
@@ -84,7 +102,6 @@ public abstract class BigHandsDao<T extends EntityIF> implements Serializable {
 			if(errFlg) {
 				em.getTransaction().rollback();
 			}
-			factory.close();
 		}
 		if(res == null || res.size() <= 0) {
 			throw new BigHandsCodingRuleException("MenuMSTが取得できませんでした");

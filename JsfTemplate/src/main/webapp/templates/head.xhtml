@@ -6,9 +6,11 @@
 	<h:outputLabel styleClass="gamen_name">gamenName</h:outputLabel>
 	<h:graphicImage styleClass="title_label" value="resources/img/BigHands.png" height="60" />
 	<h:outputLabel styleClass="user_name">userName</h:outputLabel>
+
 	<f:metadata>
-		<f:event type="preRenderView" listener="#{headerCtl.init}"/>
+		<f:event type="preRenderView" listener="#{headerCtl.init()}"/>
 	</f:metadata>
+
 	<h:form id="header_form">
 		<p:menubar model="#{headerCtl.menuModel}"/>
 	</h:form>

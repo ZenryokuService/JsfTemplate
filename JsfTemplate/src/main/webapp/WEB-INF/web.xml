@@ -6,6 +6,9 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     id="BigHands" version="3.0">
 	<display-name>Simple JSF2 Application with Primefaces</display-name>
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
 	<filter>
 		<filter-name>masterFilter</filter-name>
 		<filter-class>jp.zenryoku.frw.servlet.filter.ServletFilter</filter-class>
@@ -25,6 +28,11 @@
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
+	<!-- Listeners -->
+	<listener>
+		<listener-class>jp.zenryoku.frw.ServerContextListener</listener-class>
+	</listener>
+	<!-- Servlet -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -39,6 +47,10 @@
 		<param-name>facelets.FACELETS_LIBRARIES</param-name>
 		<param-value>/WEB-INF/gmaps4jsf-facelets-taglib.xml</param-value>
 	</context-param>
+	<context-param>
+		<param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+		<param-value>false</param-value>
+	</context-param>
 	<!-- EL Resolver -->
    <context-param>
       <param-name>com.sun.faces.expressionFactory</param-name>
@@ -52,6 +64,7 @@
 	    <param-name>org.apache.myfaces.ERROR_HANDLING</param-name>
 	    <param-value>true</param-value>
 	</context-param>
+	<!-- Difine ErrorPages -->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/404.xhtml</location>
